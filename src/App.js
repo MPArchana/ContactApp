@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button, Grid } from '@material-ui/core';
 
 class ContactApp extends Component {
   constructor(props){
@@ -53,19 +54,31 @@ class ContactApp extends Component {
           <hr />
           <ul>
             {this.state.items.map(item => (
-              <li key={item.email}>{item.name} {item.mobile} {item.email}</li>
+              <li key={item.email}>{item.name}, {item.mobile}, {item.email}</li>
             ))}
           </ul>
           <div>
             <h3>Add Contact Form</h3>
             <form onSubmit={this.handleSubmit}>
-              <span>Name</span>
-              <input type="text" id="name" onChange={this.nameChange} />
-              <span>Mobile No.</span>
+            <div style={{ padding: 10 }}>
+            <Grid container spacing={24}>            
+              <Grid item xs={6}>
+                <span>Name:</span>
+                <input type="text" id="name" onChange={this.nameChange} />
+              </Grid>
+            </Grid>
+            </div>
+            <div style={{ padding: 10 }}>
+              <span>Mobile No.:</span>
               <input type="text" id="mobile" onChange={this.mobileChange} />
+            </div>
+            <div style={{ padding: 10 }}>
               <span>Email ID:</span>
               <input type="text" id="email-id" onChange={this.emailChange} />
-              <input type="submit" />
+            </div>
+            <div style={{ padding: 20 }}>
+              <Button variant="contained" color="primary" type="submit" >Submit</Button>
+            </div>
             </form>
           </div>
         </div>
