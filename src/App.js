@@ -2,27 +2,75 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+class ContactApp extends Component {
+  constructor(props){
+    super(props);
+    this.emailChange = this.emailChange.bind(this);
+    this.nameChange = this.nameChange.bind(this);
+    this.mobileChange = this.mobileChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      name: '', mobile: '', email: '', items: []
+    }
   }
-}
 
-export default App;
+  emailChange(e){
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  nameChange(n){
+    this.setState({
+      name: n.target.value
+    })
+  }
+
+  mobileChange(m){
+    this.setState({
+      mobile: m.target.value
+    })
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    const newItem = {
+      name: this.state.name,
+      mobile: this.state.mobile,
+      email: this.state.email
+    };
+    this.setState(state => ({
+      items: state.items.concat(newItem)
+    }));
+  }
+
+
+  render() {
+      let name;
+      return(
+        <div>
+          <h1>Contacts Application</h1>
+          <hr />
+          <ul>
+            {this.state.items.map(item => (
+              <li key={item.email}>{item.name} {item.mobile} {item.email}</li>
+            ))}
+          </ul>
+          <div>
+            <h3>Add Contact Form</h3>
+            <form onSubmit={this.handleSubmit}>
+              <span>Name</span>
+              <input type="text" id="name" onChange={this.nameChange} />
+              <span>Mobile No.</span>
+              <input type="text" id="mobile" onChange={this.mobileChange} />
+              <span>Email ID:</span>
+              <input type="text" id="email-id" onChange={this.emailChange} />
+              <input type="submit" />
+            </form>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  export default ContactApp;
