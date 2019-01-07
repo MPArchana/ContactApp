@@ -12,7 +12,7 @@ class ContactApp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       name: '', mobile: '', email: '', items: []
-    }
+    };
   }
 
   emailChange(e){
@@ -82,7 +82,7 @@ class ContactApp extends Component {
             </form>
           </div>
         </div>
-      )
+      );
     }
   }
 
