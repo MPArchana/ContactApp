@@ -80,7 +80,7 @@ class ContactApp extends Component {
         <div className= "container">
           <form onSubmit={this.handleSubmit}>
           <div style={{ padding: 10 }}>
-            <span>Title.:</span>
+            <span>Title:</span>
             <input type="text" id="mobile" onChange={this.titleChange} />
           </div>
           <div style={{ padding: 10 }}>
